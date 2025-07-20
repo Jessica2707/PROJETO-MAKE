@@ -1,0 +1,26 @@
+ {% extends 'base.html' %}
+{% block title %}Finalizar Compra | Loja da Jessica{% endblock %}
+
+{% block content %}
+  <h2 class="text-pink text-center mb-4">💳 Finalizar Compra</h2>
+
+  <div class="card text-center p-4">
+    <p class="mb-3">Confira seus produtos e confirme o pedido:</p>
+
+    {% for item in carrinho_itens %}
+      <div class="produto-card text-center mb-3">
+        <h4>{{ item.produto.nome }}</h4>
+        <p>Quantidade: {{ item.quantidade }}</p>
+        <p>Subtotal: R$ {{ item.subtotal }}</p>
+      </div>
+    {% endfor %}
+
+    <h5 class="text-pink mt-3">📦 Total: <strong>R$ {{ total }}</strong></h5>
+
+    <!-- ✅ É aqui que o formulário entra -->
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn-carrinho mt-4">💖 Confirmar Pedido</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Confirmar Exclusão{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="bg-light p-4 rounded shadow-sm text-center">
+    <h3 class="text-danger mb-4">🗑️ Tem certeza que deseja excluir este produto?</h3>
+
+    <p><strong>Nome:</strong> {{ produto.nome }}</p>
+    <p><strong>Preço:</strong> R$ {{ produto.preco|floatformat:2 }}</p>
+    <p><strong>Marca:</strong> {{ produto.marca.nome }}</p>
+    <p><strong>Categoria:</strong> {{ produto.categoria.nome }}</p>
+
+    <form method="post" class="mt-4">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger me-3">🗑️ Confirmar Exclusão</button>
+      <a href="{% url 'listar_produtos' %}" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

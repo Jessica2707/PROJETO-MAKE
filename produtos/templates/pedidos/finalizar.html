@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="card shadow-sm p-4">
+      <h2 class="text-center mb-4 title-glow">💖 Finalizar Pedido</h2>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="id_endereco_entrega" class="form-label">📦 Endereço de entrega:</label>
+          {{ form.endereco_entrega }}
+        </div>
+
+        <div class="mb-3">
+          <label for="id_forma_pagamento" class="form-label">💳 Forma de pagamento:</label>
+          {{ form.forma_pagamento }}
+        </div>
+
+        <div class="text-end mt-4">
+          <button type="submit" class="btn btn-pink me-2">Confirmar pedido</button>
+          <a href="{% url 'ver_carrinho' %}" class="btn btn-secondary">Voltar ao carrinho</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

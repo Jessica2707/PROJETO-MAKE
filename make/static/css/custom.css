@@ -1,0 +1,386 @@
+/* 🌸 Cabeçalho rosa com letras brancas */
+#header {
+    background-color: #E91E63;
+    color: #fff;
+}
+
+/* 🌷 Rodapé rosé gold */
+#footer {
+    background-color: #FCE4EC;
+    color: #555;
+}
+
+/* 💛 Botões dourados */
+.button.default,
+.submit-row input.default {
+    background-color: #FFD700;
+    color: #000;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+.button.default:hover {
+    background-color: #e6c200;
+}
+
+/* 🎀 Fundo geral levemente rosado com gradiente */
+body {
+    background-color: #FFF3F7;
+    background-image: url("{% static 'imagens/fundo-maquiagem.jpg' %}"), linear-gradient(to right, #fff0f5, #ffe4e1);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* 💅 Botões primários rosados */
+.btn-primary {
+    background-color: #e83e8c;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #c73678;
+    transform: scale(1.03);
+}
+
+/* 💖 Links */
+a {
+    color: #e83e8c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 🎁 Alertas arredondados */
+.alert {
+    border-radius: 8px;
+}
+
+/* 🪞 Título dos cards */
+.card-title {
+    color: #e83e8c;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+}
+
+/* 🧁 Card dos produtos */
+.card,
+.produto-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(231, 84, 128, 0.2);
+    background-color: #ffffffcc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* 🌟 Links dentro do card */
+.card a,
+.produto-card a {
+    display: inline-block;
+    margin: 8px 4px;
+    padding: 10px 15px;
+    background-color: #cc3366;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.card a:hover,
+.produto-card a:hover {
+    background-color: #99004d;
+}
+
+/* 🌸 Texto rosa padrão */
+.text-pink {
+    color: #e83e8c;
+}
+
+h2, p, .btn {
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.produto-card {
+  width: 300px;
+}
+
+.produto-card img {
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.btn-carrinho {
+  display: inline-block;
+  background: linear-gradient(to right, #ff69b4, #ff1493);
+  color: white;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+}
+
+.btn-carrinho:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(255, 20, 147, 0.4);
+}
+
+.btn-carrinho {
+  background: linear-gradient(to right, #ff69b4, #ff1493);
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+}
+
+.btn-carrinho:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(255, 20, 147, 0.4);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #f4c2d7;
+  margin: 40px 0;
+}
+
+.btn-carrinho {
+  background: linear-gradient(to right, #ff69b4, #ff1493);
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+  display: inline-block;
+}
+
+.btn-carrinho:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(255, 20, 147, 0.4);
+}
+
+.btn {
+  background-color: #ff6bb5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background-color: #ff4995;
+  transform: scale(1.05);
+}
+
+.hero {
+  background-color: #fff0f5;
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(255, 105, 180, 0.2);
+  margin: 30px auto;
+  max-width: 700px;
+  padding: 40px;
+}
+
+.produtos-destaque {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.produto-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  width: 150px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+.produto-card:hover {
+  transform: scale(1.05);
+}
+
+.produto-card img {
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.card-produto {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+  width: 220px;
+  transition: 0.3s ease;
+}
+.card-produto:hover {
+  transform: scale(1.03);
+}
+.card-produto .btn {
+  margin-top: 6px;
+}
+.produtos-lista {
+  margin-top: 20px;
+}
+.text-pink {
+  color: #ff6bb5;
+}
+
+.text-pink {
+  color: #ff6bb5;
+}
+.btn {
+  background-color: #ff6bb5;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background-color: #ff4995;
+  transform: scale(1.05);
+}
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.text-pink {
+  color: #ff6bb5;
+}
+
+.bg-light {
+  background-color: #fff8fb;
+}
+
+form {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.2);
+  padding: 30px;
+}
+
+label {
+  font-weight: 500;
+  color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #ff6bb5;
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
+}
+
+.btn {
+  background-color: #ff6bb5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ff4995;
+  transform: scale(1.05);
+}
+
+.btn-pink {
+  background-color: #ff6bb5;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.btn-pink:hover {
+  background-color: #ff4995;
+  transform: scale(1.05);
+}
+
+.text-pink {
+  color: #ff6bb5;
+}
+.btn-pink {
+  background-color: #ff6bb5;
+  color: white;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.btn-pink:hover {
+  background-color: #ff4995;
+  transform: scale(1.05);
+}
+
+.btn-pink {
+  background-color: #ff6bb5;
+  color: white;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.btn-pink:hover {
+  background-color: #ff4995;
+  transform: scale(1.05);
+}
+
+/* static/css/style.css */
+.table-pink thead {
+  background-color: #ffc0cb;
+  color: #fff;
+}
+.btn-pink {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+}
+.btn-pink:hover {
+  background-color: #ff85c1;
+}
+.title-glow {
+  text-shadow: 0 0 8px #ff69b4;
+}

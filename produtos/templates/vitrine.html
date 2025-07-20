@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja de Make</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fff5f8;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        .preco {
+            color: #d63384;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">✨ Vitrine de Produtos ✨</h1>
+    <div class="row">
+        {% for produto in produtos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ produto.imagem.url }}" class="card-img-top" alt="{{ produto.nome }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ produto.nome }}</h5>
+                    <p class="card-text">{{ produto.descricao }}</p>
+                    <p class="preco">R$ {{ produto.preco }}</p>
+                    <a href="#" class="btn btn-outline-pink btn-sm">Adicionar ao carrinho</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

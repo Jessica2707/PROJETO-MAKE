@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Meus Pedidos | Loja da Jessica{% endblock %}
+
+{% block content %}
+  <h2 class="text-pink text-center mb-4">📦 Meus Pedidos</h2>
+  <p class="text-center">Página funcionando com sucesso! 🎉</p>
+
+  {% if pedidos %}
+    {% for pedido in pedidos %}
+      <div class="produto-card text-center">
+        <h4>Pedido #{{ pedido.id }}</h4>
+        <p>📅 Realizado em: {{ pedido.data|date:"d/m/Y" }}</p>
+        <p>💰 Total: R$ {{ pedido.total }}</p>
+        <p>📌 Status: <strong>{{ pedido.status }}</strong></p>
+
+        <a href="{% url 'detalhes_pedido' pedido.id %}" class="btn-carrinho mt-2">🔍 Ver Detalhes</a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="text-muted text-center">Você ainda não realizou nenhum pedido 😢</p>
+  {% endif %}
+{% endblock %}

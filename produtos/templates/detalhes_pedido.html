@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Detalhes do Pedido | Loja da Jessica{% endblock %}
+
+{% block content %}
+  <h2 class="text-pink text-center mb-4">🔍 Detalhes do Pedido #{{ pedido.id }}</h2>
+
+  <p class="text-center">📅 Data: {{ pedido.data|date:"d/m/Y" }}</p>
+  <p class="text-center">💰 Total: R$ {{ pedido.total }}</p>
+  <p class="text-center">📌 Status: <strong>{{ pedido.status }}</strong></p>
+
+  <hr class="my-4">
+
+  <h4 class="text-pink mb-3">🧴 Produtos</h4>
+
+  {% for item in pedido.itens.all %}
+    <div class="produto-card text-center mb-3">
+      {% if item.produto.imagem %}
+        <img src="{{ item.produto.imagem.url }}" alt="{{ item.produto.nome }}" class="img-fluid rounded mb-2" style="max-height:220px;">
+      {% endif %}
+      <h5>{{ item.produto.nome }}</h5>
+      <p>Quantidade: {{ item.quantidade }}</p>
+      <p>Subtotal: R$ {{ item.subtotal }}</p>
+    </div>
+  {% endfor %}
+
+  <div class="text-center mt-4">
+    <a href="{% url 'repetir_pedido' pedido.id %}" class="btn-carrinho">🔁 Repetir Pedido</a>
+  </div>
+{% endblock %}

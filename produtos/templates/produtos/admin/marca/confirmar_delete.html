@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5 text-center">
+    <h2 class="mb-4">🗑️ Excluir marca</h2>
+
+    <p>Tem certeza que deseja excluir a marca <strong>{{ marca.nome }}</strong>? Essa ação não pode ser desfeita.</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Confirmar exclusão</button>
+      <a href="{% url 'listar_marcas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+{% endblock %}
+

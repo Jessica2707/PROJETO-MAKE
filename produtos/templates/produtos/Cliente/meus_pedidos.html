@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Meus Pedidos | Loja da Jessica{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">📋 Meus Pedidos</h2>
+
+  {% if pedidos %}
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for pedido in pedidos %}
+          <tr>
+            <td class="text-center">#{{ pedido.id }}</td>
+            <td>{{ pedido.data|date:"d/m/Y H:i" }}</td>
+            <td class="text-center">
+              {% if pedido.status == 'pendente' %}
+                <span class="badge bg-warning text-dark">Pendente</span>
+              {% elif pedido.status == 'processando' %}
+                <span class="badge bg-info text-white">Processando</span>
+              {% elif pedido.status == 'enviado' %}
+                <span class="badge bg-primary">Enviado</span>
+              {% elif pedido.status == 'entregue' %}
+                <span class="badge bg-success">Entregue</span>
+              {% else %}
+                <span class="badge bg-secondary">Desconhecido</span>
+              {% endif %}
+            </td>
+            <td>R$ {{ pedido.total|floatformat:2 }}</td>
+            <td class="text-center">
+              <a href="{% url 'detalhes_pedido' pedido.id %}" class="btn btn-sm btn-outline-primary">🔎 Detalhes</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center mt-4">Você ainda não realizou nenhum pedido 💁</div>
+  {% endif %}
+</div>
+{% endblock %}

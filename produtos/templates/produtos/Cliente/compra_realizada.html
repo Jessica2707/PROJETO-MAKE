@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Compra Realizada com Sucesso{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="text-center p-5 bg-light rounded shadow-sm">
+    <h2 class="text-success mb-4">✅ Obrigada pela sua compra, {{ user.username }}!</h2>
+    <p class="lead">Seu pedido foi registrado com sucesso e está sendo preparado com carinho.</p>
+    <p>Logo você receberá atualizações no seu e-mail: <strong>{{ user.email }}</strong></p>
+
+    <div class="mt-4">
+      <a href="{% url 'listar_produtos' %}" class="btn btn-pink">🛍️ Voltar à Vitrine</a>
+      <a href="{% url 'meus_pedidos' %}" class="btn btn-outline-secondary ms-2">📋 Ver Meus Pedidos</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Excluir Produto{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="bg-light p-4 rounded shadow-sm text-center">
+    <h3 class="text-danger mb-4">🗑️ Tem certeza que deseja excluir este produto?</h3>
+
+    <p class="mb-2"><strong>Nome:</strong> {{ produto.nome }}</p>
+    <p class="mb-2"><strong>Preço:</strong> R$ {{ produto.preco|floatformat:2 }}</p>
+    <p class="mb-2"><strong>Categoria:</strong> {{ produto.categoria.nome }}</p>
+    <p class="mb-4"><strong>Marca:</strong> {{ produto.marca.nome }}</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger me-2">🗑️ Excluir</button>
+      <a href="{% url 'listar_produtos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

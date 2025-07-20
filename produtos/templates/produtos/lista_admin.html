@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>🧴 Produtos Cadastrados</h2>
+
+  <a href="{% url 'criar_produto' %}" class="btn btn-primary mb-3">+ Novo Produto</a>
+
+  {% if produtos %}
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Imagem</th>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Marca</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for produto in produtos %}
+        <tr>
+          <td><img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" width="50"></td>
+          <td>{{ produto.nome }}</td>
+          <td>R$ {{ produto.preco|floatformat:2 }}</td>
+          <td>{{ produto.marca.nome }}</td>
+          <td>{{ produto.categoria.nome }}</td>
+          <td>
+            <a href="{% url 'editar_produto' produto.id %}" class="btn btn-warning btn-sm">Editar</a>
+            <form action="{% url 'deletar_produto' produto.id %}" method="post" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">Nenhum produto cadastrado ainda.</div>
+  {% endif %}
+</div>
+{% endblock %}

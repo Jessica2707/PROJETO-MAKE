@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5 text-center">
+    <h2 class="mb-4">🗑️ Excluir Categoria</h2>
+
+    <p>Você tem certeza que deseja excluir <strong>{{ categoria.nome }}</strong>? Isso vai remover a categoria da sua loja.</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Confirmar exclusão</button>
+      <a href="{% url 'listar_categorias' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+{% endblock %}

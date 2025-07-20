@@ -1,0 +1,19 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'admin/css/custom.css' %}">
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name" style="display: flex; align-items: center; gap: 10px;">
+        <img src="{% static 'admin/img/logo_make.png' %}" height="40" alt="Logo" style="border-radius: 6px;">
+        Loja de Make ✨
+    </h1>
+{% endblock %}
+
+{% block nav-global %}
+    <div style="padding: 10px; font-size: 14px; color: #B23B8D;">
+        👑 Bem-vinda ao seu império da beleza, Jessica!
+    </div>

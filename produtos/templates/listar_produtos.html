@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Produtos Cadastrados | Loja da Jessica{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-pink text-center mb-4">📦 Produtos Cadastrados</h2>
+
+  <div class="text-end mb-3">
+    <a href="{% url 'criar_produto' %}" class="btn">+ Novo Produto</a>
+  </div>
+
+  {% if produtos %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Marca</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for produto in produtos %}
+          <tr>
+            <td class="text-center">
+              {% if produto.imagem %}
+                <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="rounded" style="max-width:60px; max-height:60px; object-fit:cover;">
+              {% else %}
+                <span class="text-muted">Sem imagem</span>
+              {% endif %}
+            </td>
+            <td>{{ produto.nome }}</td>
+            <td>R$ {{ produto.preco|floatformat:2 }}</td>
+            <td>{{ produto.marca.nome }}</td>
+            <td>{{ produto.categoria.nome }}</td>
+            <td class="text-center">
+              <a href="{% url 'editar_produto' produto.id %}" class="btn btn-outline-warning btn-sm me-1">✏️</a>
+              <form action="{% url 'deletar_produto' produto.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-danger btn-sm">🗑️</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center mt-4">Nenhum produto cadastrado ainda.</div>
+  {% endif %}
+</div>
+{% endblock %}

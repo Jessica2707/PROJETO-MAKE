@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="title-glow text-center mb-4">✨ Marcas Cadastradas</h2>
+
+    <table class="table table-bordered table-striped">
+      <thead class="table-pink">
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for marca in marcas %}
+          <tr>
+            <td>{{ marca.id }}</td>
+            <td>{{ marca.nome }}</td>
+            <td>
+              <a href="{% url 'editar_marca' marca.id %}" class="btn btn-sm btn-outline-secondary">✏️ Editar</a>
+              <a href="{% url 'deletar_marca' marca.id %}" class="btn btn-sm btn-outline-danger">🗑️ Excluir</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3" class="text-center">Nenhuma marca cadastrada ainda.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="text-end">
+      <a href="{% url 'criar_marca' %}" class="btn btn-pink">➕ Nova marca</a>
+    </div>
+  </div>
+{% endblock %}

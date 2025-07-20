@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Compra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff0f5;
+            color: #333;
+            margin: 30px;
+        }
+        h1 {
+            color: #d63384;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(255, 192, 203, 0.3);
+            max-width: 500px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d63384;
+        }
+        .resumo {
+            margin-top: 30px;
+            background-color: #fff5f8;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .produto {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Finalizar Compra 💖</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Confirmar Pedido</button>
+</form>
+
+<div class="resumo">
+    <h2>Resumo do Carrinho 🛒</h2>
+    {% for produto in produtos %}
+        <div class="produto">
+            {{ produto.nome }} — R$ {{ produto.preco }}
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

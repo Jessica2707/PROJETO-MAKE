@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Loja de Make da Jessica{% endblock %}
+
+{% block content %}
+  <section class="hero bg-light text-center py-5">
+    <h2 class="display-5 text-pink mb-3">✨ Bem-vinda à Loja da Jessica 💖</h2>
+    <p class="lead text-muted">Explore makes incríveis, crie pedidos e arrase no seu sistema Django!</p>
+    <a href="{% url 'listar_produtos' %}" class="btn mt-3">🌟 Ver Produtos</a>
+  </section>
+
+  <section class="destaques text-center mt-5">
+    <h3 class="text-pink mb-4">🌸 Destaques da Semana</h3>
+    <div class="produtos-destaque d-flex justify-content-center gap-4 flex-wrap">
+      <div class="produto-card text-center">
+        <img src="{% static 'imagens/gloss.jpg' %}" alt="Gloss Glow" style="max-width:150px; max-height:150px; object-fit:cover;" class="img-fluid rounded mb-2">
+        <p class="mt-2">Gloss Glow</p>
+      </div>
+      <div class="produto-card text-center">
+        <div class="produto-card text-center">
+  <img src="{% static 'imagens/base.jpg' %}" alt="Base Glow" class="img-fluid rounded mb-2" style="max-width:150px; max-height:150px; object-fit:cover;">
+        <p class="mt-2">Base Glow</p>
+      </div>
+      <div class="produto-card text-center">
+        <img src="{% static 'imagens/paleta.jpg' %}" alt="Paleta Neon" class="img-fluid rounded mb-2" style="max-width:150px; max-height:150px; object-fit:cover;">
+        <p class="mt-2">Paleta Neon</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

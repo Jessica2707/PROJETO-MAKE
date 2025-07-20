@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(255, 192, 203, 0.4);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #d63384;
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #d63384;
+    }
+
+    .mensagem {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="{% static 'imagens/logo.png' %}" alt="Logo da Loja" width="100" style="margin-bottom: 20px;">
+    <h1>Entrar na sua conta 💄</h1>
+    <p style="color: #555; font-size: 15px;">
+    Acesse sua conta e descubra as novidades que vão realçar sua beleza ✨
+  </p>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.username.label_tag }}<br>
+      {{ form.username }}<br>
+      {{ form.password.label_tag }}<br>
+      {{ form.password }}<br>
+      <button type="submit">🔐 Entrar</button>
+    </form>
+    <div class="mensagem">
+      Ainda não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se</a>
+    </div>
+  </div>
+</body>
+</html>

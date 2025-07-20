@@ -1,0 +1,61 @@
+{% for produto in produtos %}
+  <div class="produto">
+    <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+    <h3>{{ produto.nome }}</h3>
+    <p class="preco">R$ {{ produto.preco }}</p>
+    <a href="{% url 'detalhe_produto' produto.id %}" class="btn-detalhes">Ver mais</a><br>
+
+    <a href="{% url 'editar_produto' produto.id %}" class="btn-editar">✏️ Editar</a>
+    <a href="{% url 'deletar_produto' produto.id %}" class="btn-deletar">🗑️ Deletar</a>
+</div>
+{% endfor %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos</title>
+  <style>
+    .btn-editar,
+.btn-deletar {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-editar {
+    background-color: #f0ad4e;
+}
+
+.btn-deletar {
+    background-color: #d9534f;
+    margin-left: 5px;
+}
+  </style>
+</head>
+<body>
+  <h1>🌸 Minha Vitrine de Produtos</h1>
+
+  <div class="grid">
+    {% for produto in produtos %}
+      <div class="card">
+        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+        <h2>{{ produto.nome }}</h2>
+        <p>{{ produto.descricao|truncatechars:50 }}</p>
+        <p class="preco">R$ {{ produto.preco }}</p>
+        <a href="{% url 'adicionar_ao_carrinho' produto.id %}">🛒 Adicionar ao Carrinho</a><br>
+        <a href="{% url 'editar' produto.id %}">✏️ Editar</a> |
+        <a href="{% url 'deletar' produto.id %}">🗑️ Deletar</a>
+        <a href="{% url 'listar' %}" style="display:block; margin:20px auto; text-align:center;">📦 Ver Todos os Produtos</a>
+        
+      </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>

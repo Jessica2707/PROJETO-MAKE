@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Carrinho de Compras | Loja da Jessica{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">🛒 Meu Carrinho</h2>
+
+  {% if carrinho_itens %}
+    <div class="table-responsive mb-4">
+      <table class="table table-bordered align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>Imagem</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Subtotal</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in carrinho_itens %}
+          <tr>
+            <td class="text-center">
+              {% if item.produto.imagem %}
+                <img src="{{ item.produto.imagem.url }}" alt="{{ item.produto.nome }}" class="rounded" style="max-width:60px; max-height:60px; object-fit:cover;">
+              {% else %}
+                <span class="text-muted">Sem imagem</span>
+              {% endif %}
+            </td>
+            <td>{{ item.produto.nome }}</td>
+            <td class="text-center">{{ item.quantidade }}</td>
+            <td>R$ {{ item.subtotal|floatformat:2 }}</td>
+            <td class="text-center">
+              <a href="{% url 'remover_do_carrinho' item.produto.id %}" class="btn btn-sm btn-outline-danger">🗑️ Remover</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-end">
+      <h4 class="text-pink">🧾 Total: R$ {{ total|floatformat:2 }}</h4>
+      <a href="{% url 'finalizar_compra' %}" class="btn btn-pink mt-3">✅ Finalizar Compra</a>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center mt-4">Seu carrinho está vazio 💁</div>
+  {% endif %}
+</div>
+{% endblock %}

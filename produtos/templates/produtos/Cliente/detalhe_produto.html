@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{ produto.nome }} | Loja da Jessica{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-5 text-center mb-4">
+      {% if produto.imagem %}
+        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="img-fluid rounded shadow" style="max-height:400px; object-fit:cover;">
+      {% else %}
+        <div class="bg-light text-muted d-flex align-items-center justify-content-center rounded" style="height: 300px;">Sem imagem disponível</div>
+      {% endif %}
+    </div>
+
+    <div class="col-md-7">
+      <h2 class="text-pink">{{ produto.nome }}</h2>
+      <p class="text-muted">Marca: {{ produto.marca.nome }} | Categoria: {{ produto.categoria.nome }}</p>
+      <p><strong>Cor:</strong> {{ produto.cor }}</p>
+      <p>{{ produto.descricao }}</p>
+      <h4 class="mt-3">💸 R$ {{ produto.preco|floatformat:2 }}</h4>
+
+      <a href="{% url 'adicionar_ao_carrinho' produto.id %}" class="btn btn-pink mt-3">🛒 Adicionar ao Carrinho</a>
+      <a href="{% url 'carrinho' %}" class="btn btn-outline-secondary mt-3 ms-2">Ver Carrinho</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

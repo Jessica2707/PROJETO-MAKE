@@ -1,0 +1,81 @@
+/* Cabeçalho rosa com letras brancas */
+#header {
+    background-color: #E91E63 !important;
+    color: #fff !important;
+}
+
+/* Rodapé rosé gold */
+#footer {
+    background-color: #FCE4EC;
+    color: #555;
+}
+
+/* Botões com dourado suave */
+.button.default, .submit-row input.default {
+    background-color: #FFD700 !important;
+    color: #000 !important;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+.button.default:hover {
+    background-color: #e6c200 !important;
+}
+
+/* Fundo geral levemente rosado */
+body {
+    background-color: #FFF3F7;
+    background: url("{% static 'imagens/fundo-maquiagem.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    background: linear-gradient(to right, #fff0f5, #ffe4e1);
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+.btn-primary {
+  background-color: #e83e8c;
+  border: none;
+  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: #c73678;
+  background-color: #c73678;
+  transform: scale(1.03);
+  
+}
+a {
+  color: #e83e8c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.alert {
+  border-radius: 8px;
+}
+
+.card-title {
+  color: #e83e8c;
+  font-weight: 600;
+
+}
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(231, 84, 128, 0.2);
+  background-color: #ffffffcc;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+.card-title {
+  font-family: 'Playfair Display', serif;
+}
+
+.text-pink {
+  color: #e83e8c;
+}
