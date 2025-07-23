@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}🛒 Carrinho de Compras{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">🛍️ Seu Carrinho</h2>
+
+  {% if itens %}
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Subtotal</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in itens %}
+      <tr>
+        <td>{{ item.produto.nome }}</td>
+        <td>
+          <form method="post" action="{% url 'atualizar_quantidade' item.id %}" class="d-flex">
+            {% csrf_token %}
+            <input type="number" name="quantidade" value="{{ item.quantidade }}" min="1" class="form-control me-2" style="width: 80px;">
+            <button type="submit" class="btn btn-sm btn-primary">Atualizar</button>
+          </form>
+        </td>
+        <td>R$ {{ item.subtotal|floatformat:2 }}</td>
+        <td class="text-center">
+          <a href="{% url 'remover_do_carrinho' item.id %}" class="btn btn-sm btn-danger">🗑️ Remover</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="text-end mt-4">
+    <h5>Total: <strong class="text-pink">R$ {{ total|floatformat:2 }}</strong></h5>
+    <a href="{% url 'checkout' %}" class="btn btn-success mt-2">💳 Finalizar Compra</a>
+  </div>
+  {% else %}
+    <p class="text-center text-muted mt-5">Seu carrinho está vazio... Adicione um produto para continuar 💫</p>
+  {% endif %}
+</div>
+{% endblock %}

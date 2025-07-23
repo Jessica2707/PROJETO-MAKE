@@ -1,0 +1,11 @@
+<h1>Pedidos</h1>
+<a href="{% url 'criar_pedido' %}">Novo Pedido</a>
+<ul>
+  {% for pedido in pedidos %}
+    <li>
+      Pedido #{{ pedido.id }} - {{ pedido.status }}
+      <a href="{% url 'editar_pedido' pedido.id %}">Editar</a>
+      <a href="{% url 'excluir_pedido' pedido.id %}">Excluir</a>
+    </li>
+  {% endfor %}
+</ul>

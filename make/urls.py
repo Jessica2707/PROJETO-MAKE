@@ -26,6 +26,7 @@ from produtos.views import listar_categorias
 
 
 
+
 urlpatterns = [
     path('', views.home, name='home'),
     path('', include('produtos.urls')),
@@ -51,6 +52,11 @@ urlpatterns = [
     path('pedidos/', views.pedidos, name='pedidos'),
     path('marcas/', views.listar_marcas, name='listar_marcas'),
     path('categorias/', listar_categorias, name='listar_categorias'),
+    path('carrinho/', include('carrinho.urls')),
+    path('enderecos/', include('produtos.urls')),
+    path('', include('produtos.urls')),
+
+
     
 ]
 

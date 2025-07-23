@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}🗑️ Excluir Produto | Loja da Jessica{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+  <h2 class="text-danger mb-4">🗑️ Excluir Produto</h2>
+  <p class="lead">Tem certeza que deseja excluir <strong>{{ produto.nome }}</strong>?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+    <a href="{% url 'listar_produtos_admin' %}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

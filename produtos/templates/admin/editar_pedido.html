@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Editar Pedido | Admin{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">✏️ Editar Pedido</h2>
+
+  <form method="post" class="bg-light p-4 rounded shadow-sm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-warning">💾 Atualizar Pedido</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Formas de Pagamento | Painel Admin{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">💳 Formas de Pagamento</h2>
+
+  <div class="text-end mb-3">
+    <a href="{% url 'adicionar_forma_pagamento' %}" class="btn btn-outline-pink shadow-sm">
+  💸 Nova Forma de Pagamento
+</a>
+
+  </div>
+
+  {% if formas_pagamento %}
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Nome</th>
+        <th>Tipo</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for forma in formas_pagamento %}
+      <tr>
+        <td>{{ forma.nome }}</td>
+        <td>{{ forma.tipo }}</td>
+        <td class="text-center">
+          <a href="{% url 'editar_forma_pagamento' forma.id %}" class="btn btn-sm btn-warning">✏️ Editar</a>
+          <a href="{% url 'excluir_forma_pagamento' forma.id %}" class="btn btn-sm btn-danger">🗑️ Excluir</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p class="text-center text-muted">Nenhuma forma de pagamento cadastrada ainda 💸</p>
+  {% endif %}
+</div>
+{% endblock %}
+

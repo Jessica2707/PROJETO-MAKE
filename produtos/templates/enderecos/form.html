@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if form.instance.pk %}
+    Editar Endereço
+  {% else %}
+    Novo Endereço
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2 class="mb-3">{% if form.instance.pk %}Editar{% else %}Novo{% endif %} Endereço</h2>
+
+  <form method="post" class="mb-3">
+    {% csrf_token %}
+    <div class="row">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{% url 'listar_enderecos' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

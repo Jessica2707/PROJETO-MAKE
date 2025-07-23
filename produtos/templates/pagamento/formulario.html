@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Nova Forma de Pagamento | Painel Admin{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">💳 Nova Forma de Pagamento</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="id_nome" class="form-label">Nome:</label>
+      {{ form.nome }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_tipo" class="form-label">Tipo:</label>
+      {{ form.tipo }}
+    </div>
+
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-success px-4">Salvar</button>
+      <a href="{% url 'listar_formas_pagamento' %}" class="btn btn-secondary ms-2">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+

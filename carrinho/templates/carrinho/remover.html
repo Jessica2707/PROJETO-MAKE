@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Remover Item - Loja da Jessica{% endblock %}
+{% block content %}
+<h2 class="mb-3">Remover Item do Carrinho</h2>
+
+<div class="card p-3 bg-light shadow-sm">
+  <p>Você tem certeza que deseja remover <strong>{{ item.produto.nome }}</strong> do carrinho?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Remover</button>
+    <a href="{% url 'listar_carrinho' %}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

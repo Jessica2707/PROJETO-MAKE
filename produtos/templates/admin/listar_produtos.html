@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Produtos Cadastrados | Painel Admin{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">📋 Produtos Cadastrados</h2>
+
+  <div class="text-end mb-3">
+    <a href="{% url 'criar_produto' %}" class="btn btn-success">+ Novo Produto</a>
+  </div>
+
+  {% if produtos %}
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Imagem</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Marca</th>
+        <th>Categoria</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for produto in produtos %}
+      <tr>
+        <td>
+          {% if produto.imagem %}
+            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" width="50">
+          {% else %}
+            <span class="text-muted">Sem imagem</span>
+          {% endif %}
+        </td>
+        <td>{{ produto.nome }}</td>
+        <td>R$ {{ produto.preco }}</td>
+        <td>{{ produto.marca.nome }}</td>
+        <td>{{ produto.categoria.nome }}</td>
+        <td class="text-center">
+          <a href="{% url 'produto_update' produto.pk %}" class="btn btn-sm btn-warning">✏️ Editar</a>
+          <a href="{% url 'produto_delete' produto.pk %}" class="btn btn-sm btn-danger">🗑️ Excluir</a>
+          <a href="{% url 'adicionar_ao_carrinho' produto.id %}" class="btn btn-outline-pink mt-2">
+      🛍️ Adicionar ao Carrinho
+    </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p class="text-center text-muted">Nenhum produto cadastrado ainda.</p>
+  {% endif %}
+</div>
+{% endblock %}

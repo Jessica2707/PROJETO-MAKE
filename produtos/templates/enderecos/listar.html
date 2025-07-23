@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Meus Endereços
+{% endblock %}
+
+{% block content %}
+  <h2 class="mb-3">Meus Endereços</h2>
+  <a href="{% url 'adicionar_endereco' %}" class="btn btn-primary mb-3">+ Novo Endereço</a>
+
+  <ul class="list-group">
+    {% for endereco in enderecos %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ endereco }}
+        <span>
+          <a href="{% url 'editar_endereco' endereco.pk %}" class="btn btn-sm btn-warning">Editar</a>
+          <a href="{% url 'excluir_endereco' endereco.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+        </span>
+      </li>
+    {% empty %}
+      <li class="list-group-item text-muted">Nenhum endereço cadastrado ainda.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Editar Item{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">✏️ Editar Quantidade</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label>Produto:</label>
+      <input type="text" value="{{ item.produto.nome }}" class="form-control" disabled>
+    </div>
+    <div class="mb-3">
+      <label>Quantidade:</label>
+      <input type="number" name="quantidade" value="{{ item.quantidade }}" min="1" class="form-control">
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-success">Salvar</button>
+      <a href="{% url 'ver_carrinho' %}" class="btn btn-secondary ms-2">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+

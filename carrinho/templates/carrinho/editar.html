@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Editar Item - Loja da Jessica{% endblock %}
+{% block content %}
+<h2 class="mb-3">Editar Item do Carrinho</h2>
+
+<form method="post" class="card p-3 bg-light shadow-sm">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-success">Salvar</button>
+  <a href="{% url 'listar_carrinho' %}" class="btn btn-secondary ms-2">Cancelar</a>
+</form>
+{% endblock %}

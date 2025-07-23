@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Marcas Cadastradas | Admin{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">🏷️ Marcas Cadastradas</h2>
+
+  <div class="text-end mb-3">
+    <a href="{% url 'criar_marca' %}" class="btn btn-success">+ Nova Marca</a>
+  </div>
+
+  {% if marcas %}
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for marca in marcas %}
+      <tr>
+        <td>{{ marca.nome }}</td>
+        <td class="text-center">
+          <a href="{% url 'editar_marca' marca.id %}" class="btn btn-sm btn-warning">✏️ Editar</a>
+          <a href="{% url 'deletar_marca' marca.id %}" class="btn btn-sm btn-danger">🗑️ Excluir</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p class="text-center text-muted">Nenhuma marca cadastrada.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -54,6 +54,10 @@
             <h3>{{ produto.nome }}</h3>
             <p class="preco">R$ {{ produto.preco }}</p>
             <a href="{% url 'detalhe_produto' produto.id %}" class="btn-detalhes">Ver mais</a>
+            <a href="{% url 'adicionar_ao_carrinho' produto.id %}" class="btn btn-outline-pink">
+  🛍️ Adicionar ao carrinho
+</a>
+
         </div>
         {% endfor %}
     </div>

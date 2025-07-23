@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Carrinho | Painel{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-pink mb-4">🛒 Itens no Carrinho</h2>
+
+  {% if itens %}
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Subtotal</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in itens %}
+<tr>
+  <td>{{ item.produto.nome }}</td>
+
+  <td>
+    <form method="post" action="{% url 'atualizar_quantidade' item.id %}" class="d-flex">
+      <form method="post" action="{% url 'finalizar_pedido' %}">
+  {% csrf_token %}
+  <input type="hidden" name="endereco" value="Rua Salvador, 411 - Jardim Campo Verde">
+  <input type="hidden" name="forma_pagamento" value="Pix">
+  <button type="submit" class="btn btn-success w-100 mt-3">✅ Confirmar Pedido</button>
+</form>
+
+      {% csrf_token %}
+      <input type="number" name="quantidade" value="{{ item.quantidade }}" min="1" class="form-control me-2" style="width: 80px;">
+      <button type="submit" class="btn btn-sm btn-primary">Atualizar</button>
+    </form>
+  </td>
+
+  <td>R$ {{ item.subtotal|floatformat:2 }}</td>
+
+  <td class="text-center">
+    <a href="{% url 'editar_item_carrinho' item.id %}" class="btn btn-sm btn-warning">✏️</a>
+    <a href="{% url 'remover_item_carrinho' item.id %}" class="btn btn-sm btn-danger">🗑️</a>
+  </td>
+</tr>
+{% endfor %}
+    </tbody>
+  </table>
+  <div class="text-end mt-3">
+    <strong>Total: R$ {{ total|floatformat:2 }}</strong>
+  </div>
+  {% else %}
+    <p class="text-center text-muted">Carrinho vazio 💔</p>
+  {% endif %}
+</div>
+{% endblock %}
+

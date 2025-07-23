@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Loja da Jessica{% endblock %}</title>
 
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
@@ -21,9 +22,24 @@
   <!-- 🌸 Navbar -->
   <nav class="navbar bg-pink text-white py-3 mb-4">
     <div class="container text-center">
-      <a href="{% url 'home' %}" class="nav-link d-inline text-white me-3"><i class="bi bi-house-door-fill"></i> Início</a>
-      <a href="{% url 'listar_produtos' %}" class="nav-link d-inline text-white me-3"><i class="bi bi-bag-heart-fill"></i> Produtos</a>
-      <a href="{% url 'carrinho' %}" class="nav-link d-inline text-white"><i class="bi bi-cart-fill"></i> Carrinho</a>
+      <a href="{% url 'home' %}" class="nav-link d-inline text-white me-3">
+        <i class="bi bi-house-door-fill"></i> Início
+      </a>
+      <a href="{% url 'listar_produtos' %}" class="nav-link d-inline text-white me-3">
+        <i class="bi bi-bag-heart-fill"></i> Produtos
+      </a>
+      <a href="{% url 'listar_carrinho' %}" class="nav-link d-inline text-white me-3">
+        <i class="bi bi-cart-fill"></i> Carrinho
+      </a>
+      <a href="{% url 'listar_marcas' %}" class="nav-link d-inline text-white me-3">
+        <i class="bi bi-tags-fill"></i> Marcas
+      </a>
+      <a href="{% url 'listar_categorias' %}" class="nav-link d-inline text-white me-3">
+        <i class="bi bi-grid-fill"></i> Categorias
+      </a>
+      <a href="{% url 'listar_pedidos' %}" class="nav-link d-inline text-white me-3">
+        <i class="bi bi-receipt-cutoff"></i> Pedidos
+      </a>
     </div>
   </nav>
 

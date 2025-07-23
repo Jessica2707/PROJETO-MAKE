@@ -47,20 +47,55 @@ class ClienteAdmin(admin.ModelAdmin):
     list_display = ('nome', 'cpf', 'email', 'telefone', 'data_cadastro')
     search_fields = ('nome', 'cpf', 'email')
 
+# Classe Inline para exibir Itens do Pedido diretamente no PedidoAdmin
+class ItemPedidoInline(admin.TabularInline):
+    model = ItemPedido
+    extra = 0 # Não exibe linhas extras vazias por padrão
+    raw_id_fields = ['produto'] # Útil para buscar produtos se você tiver muitos
+
+@admin.register(Pedido)
 class PedidoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'usuario', 'forma_pagamento']
+    # Correção aqui: use 'forma_pagamento_selecionada'
+    list_display = (
+        'pk', # ID do pedido
+        'usuario',
+        'forma_pagamento_selecionada', # <-- CORREÇÃO: ERA 'forma_pagamento'
+        'total',
+        'status',
+        'data_pedido',
+    )
+    list_filter = ('status', 'data_pedido', 'forma_pagamento_selecionada')
+    search_fields = ('usuario__username', 'pk') # Permite buscar por nome de usuário e ID do pedido
+    inlines = [ItemPedidoInline] # Adiciona o inline para ver os itens do pedido
+    raw_id_fields = ('usuario', 'endereco_entrega', 'forma_pagamento_selecionada') # Útil para selects grandes
 
-    def data_pedido(self, obj):
-        return obj.data
-    
+    # Se você quiser permitir a edição de status diretamente na lista
+    list_editable = ('status',)
 
-# 📝 Registro dos modelos no admin customizado
-admin_site.register(Marca)
-admin_site.register(Categoria)
-admin_site.register(Produto, ProdutoAdmin)
-admin_site.register(Cliente, ClienteAdmin)
-admin_site.register(Pedido, PedidoAdmin)
-admin_site.register(FormaPagamento)
-admin_site.register(EnderecoEntrega)
-admin_site.register(Estoque)
-admin_site.register(UsuarioAdmin, UsuarioAdminInline)
+    # Campos que serão exibidos na página de detalhes do pedido
+    fieldsets = (
+        (None, {
+            'fields': ('usuario', 'endereco_entrega', 'forma_pagamento_selecionada', 'total', 'status'),
+        }),
+        ('Datas', {
+            'fields': ('data_pedido',),
+            'classes': ('collapse',), # Opcional: faz a seção ser "colapsável"
+        }),
+    )
+    readonly_fields = ('data_pedido', 'total') # Campos que não podem ser editados
+
+# Se você ainda não registrou, faça isso:
+@admin.register(EnderecoEntrega)
+class EnderecoEntregaAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'rua', 'cidade', 'estado', 'cep')
+    search_fields = ('usuario__username', 'cidade', 'cep')
+
+@admin.register(FormaPagamento)
+class FormaPagamentoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'ativo')
+    list_editable = ('ativo',)
+
+# Você pode ter outros registros de admin aqui, como ProdutoAdmin, MarcaAdmin, CategoriaAdmin
+# admin.site.register(Produto)
+# admin.site.register(Marca)
+# admin.site.register(Categoria)

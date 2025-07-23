@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from .models import Marca
 from .models import Categoria
 from .models import Pedido
-
 from .models import (
     Categoria,
     Marca,
@@ -11,6 +10,7 @@ from .models import (
     EnderecoEntrega,
     FormaPagamento
 )
+from .models import FormaPagamento, EnderecoEntrega
 
 # 🌸 Filtro de produtos (em listagem ou vitrine)
 class FiltroProdutoForm(forms.Form):
@@ -75,15 +75,15 @@ class FormularioCadastro(forms.ModelForm):
 class PedidoForm(forms.ModelForm):
     class Meta:
         model = Pedido
-        fields = ['endereco_entrega', 'forma_pagamento']
+        fields = ['usuario', 'endereco_entrega', 'forma_pagamento_selecionada', 'status']
         widgets = {
-            'endereco_entrega': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Rua, número, bairro...'
-            }),
-            'forma_pagamento': forms.Select(attrs={'class': 'form-select'}),
+            'usuario': forms.Select(attrs={'class': 'form-select'}),
+            'endereco_entrega': forms.Select(attrs={'class': 'form-select'}),
+            'forma_pagamento_selecionada': forms.Select(attrs={'class': 'form-select'}),
+            'status': forms.Select(attrs={'class': 'form-select'}),
         }
-    
+
+
 
 
 # 🧴 Marca
@@ -92,7 +92,7 @@ class MarcaForm(forms.ModelForm):
         model = Marca
         fields = ['nome']
         widgets = {
-            'nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome da marca'}),
+            'nome': forms.TextInput(attrs={'class': 'form-control'})
         }
 
 
@@ -100,17 +100,25 @@ class MarcaForm(forms.ModelForm):
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['nome', 'descricao', 'preco', 'cor', 'imagem', 'categoria', 'marca']
-        widgets = {
-            'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'preco': forms.NumberInput(attrs={'class': 'form-control'}),
-            'cor': forms.TextInput(attrs={'class': 'form-control'}),
-            'imagem': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'categoria': forms.Select(attrs={'class': 'form-select'}),
-            'marca': forms.Select(attrs={'class': 'form-select'}),
-        }
+        fields = '__all__'
+
 class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
         fields = ['nome']
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+class FormaPagamentoForm(forms.ModelForm):
+    class Meta:
+        model = FormaPagamento
+        fields = ['nome', 'ativo']
+
+class EnderecoEntregaForm(forms.ModelForm):
+    class Meta:
+        model = EnderecoEntrega
+        fields = ['rua', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'cep']
+
+
+        

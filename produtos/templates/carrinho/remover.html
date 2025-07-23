@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Remover Item{% endblock %}
+{% block content %}
+<h2>Remover Item</h2>
+<p>Tem certeza que deseja remover {{ item.produto.nome }} do carrinho?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Remover</button>
+</form>
+<a href="{% url 'listar_carrinho' %}">Cancelar</a>
+{% endblock %}
+

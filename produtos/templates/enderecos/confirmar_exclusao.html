@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Confirmar Exclusão
+{% endblock %}
+
+{% block content %}
+  <h2 class="mb-3">Deseja excluir este endereço?</h2>
+
+  <p class="fw-bold">{{ endereco }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+    <a href="{% url 'listar_enderecos' %}" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+{% endblock %}
+
